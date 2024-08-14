@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_DB=data_pipline
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=NewMe2024
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: data_pipline
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: NewMe2024
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  pgadmin:
+    build: ./pgadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  postgres_data:
