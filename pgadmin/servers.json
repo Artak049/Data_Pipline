@@ -7,7 +7,7 @@
             "Port": 5432,
             "MaintenanceDB": "data_pipline",
             "Username": "postgres",
-            "Password": "NewMe2024",
+            "Password": "1234",
             "SSLMode": "prefer",
             "SavePassword": true
     }

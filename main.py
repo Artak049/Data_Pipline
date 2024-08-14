@@ -40,7 +40,7 @@ async def create_table_if_not_exists(conn):
 async def db_connection():
     return await asyncpg.connect(
         user="postgres",
-        password="NewMe2024",
+        password="1234",
         database="data_pipline",
         host="db"
     )
@@ -67,7 +67,7 @@ async def insert_metrics(conn, data):
 
 
 async def stream_user_metrics(interval=1):
-        await create_db_if_not_exists("data_pipline", "postgres", "NewMe2024", "db", 5432)
+        await create_db_if_not_exists("data_pipline", "postgres", "1234", "db", 5432)
         conn = await db_connection()
         await create_table_if_not_exists(conn)
         try:
